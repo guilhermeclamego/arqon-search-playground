@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.guilhermeclamego</groupId>
+    <artifactId>ArqonSearchPlayground</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <version.mongodb>4.11.1</version.mongodb>
+        <version.logback>1.6.3</version.logback>
+    </properties>
+
+    <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>io.github.guilhermeclamego</groupId>-->
+<!--            <artifactId>arqon-search-core</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>io.github.guilhermeclamego</groupId>-->
+<!--            <artifactId>arqon-search-atlas</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
+
+        <!-- MongoDB Java Driver Nativo -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+            <version>${version.mongodb}</version>
+        </dependency>
+
+        <!-- SLF4J / Logback para logar as queries -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${version.logback}</version>
+        </dependency>
+    </dependencies>
+
+</project>
