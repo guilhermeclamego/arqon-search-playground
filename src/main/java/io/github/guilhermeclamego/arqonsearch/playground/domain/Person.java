@@ -4,6 +4,8 @@ public record Person(
         String id,
         String name,
         String email,
-        Integer age
+        Integer age,
+        String city,
+        String country
 ) {
 }
