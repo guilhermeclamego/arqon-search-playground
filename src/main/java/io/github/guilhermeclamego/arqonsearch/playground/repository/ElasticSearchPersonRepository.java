@@ -1,6 +1,7 @@
 package io.github.guilhermeclamego.arqonsearch.playground.repository;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.search.Hit;
 import io.github.guilhermeclamego.arqonsearch.playground.domain.Person;
 import org.springframework.stereotype.Repository;
@@ -20,12 +21,20 @@ public class ElasticSearchPersonRepository {
         this.client = client;
     }
 
-    public void save(Person person) throws IOException {
-        client.index(request -> request
-                .index(INDEX)
-                .id(person.id())
-                .document(person)
-        );
+    public void saveAll(List<Person> persons) throws IOException {
+        BulkRequest.Builder bulk = new BulkRequest.Builder();
+
+        for (Person person : persons) {
+            bulk.operations(operation -> operation
+                    .index(index -> index
+                            .index(INDEX)
+                            .id(person.id())
+                            .document(person)
+                    )
+            );
+        }
+
+        client.bulk(bulk.build());
     }
 
     public Person findById(String id) throws IOException {
@@ -53,5 +62,14 @@ public class ElasticSearchPersonRepository {
                 .map(Hit::source)
                 .filter(Objects::nonNull)
                 .toList();
+    }
+
+    public void deleteAll() throws IOException {
+        client.deleteByQuery(request -> request
+                .index(INDEX)
+                .query(query -> query
+                        .matchAll(matchAll -> matchAll)
+                )
+        );
     }
 }

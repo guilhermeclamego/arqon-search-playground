@@ -1,7 +1,5 @@
 package io.github.guilhermeclamego.arqonsearch.playground.controller;
 
-
-
 import io.github.guilhermeclamego.arqonsearch.playground.domain.Person;
 import io.github.guilhermeclamego.arqonsearch.playground.service.PersonService;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +18,15 @@ public class PersonController {
     }
 
     @PostMapping("/mongo")
-    public void saveToMongo(@RequestBody Person person) {
+    public String saveToMongo(@RequestBody List<Person> person) {
         service.saveToMongo(person);
+        return "Data saved to MongoDB successfully!";
     }
 
     @PostMapping("/elasticsearch")
-    public void saveToElasticsearch(@RequestBody Person person) throws IOException {
+    public String saveToElasticsearch(@RequestBody List<Person> person) throws IOException {
         service.saveToElasticsearch(person);
+        return "Data saved to Elasticsearch successfully!";
     }
 
     @GetMapping("/mongo")
@@ -47,5 +47,17 @@ public class PersonController {
     @GetMapping("/elasticsearch/{id}")
     public Person findByIdInElasticsearch(@PathVariable String id) throws IOException {
         return service.findByIdInElasticsearch(id);
+    }
+
+    @DeleteMapping("/mongo")
+    public String deleteAllInMongo() {
+        service.deleteAllInMongo();
+        return "All data deleted from MongoDB!";
+    }
+
+    @DeleteMapping("/elasticsearch")
+    public String deleteAllInElasticsearch() throws IOException {
+        service.deleteAllInElasticsearch();
+        return "All data deleted from Elasticsearch!";
     }
 }

@@ -2,7 +2,7 @@ arqon:
   search:
     mongo:
       uri: mongodb://localhost:27017
-      database: arqon_search_playground
+      database: arqon-search
     elasticsearch:
       host: localhost
       port: 9200

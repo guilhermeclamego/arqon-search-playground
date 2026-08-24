@@ -22,8 +22,8 @@
     <properties>
         <java.version>25</java.version>
         <arqon-search.version>1.0-SNAPSHOT</arqon-search.version>
-        <elasticsearch.version>9.5.1</elasticsearch.version>
-        <jackson.version>2.22.2</jackson.version>
+        <elasticsearch.version>8.12.0</elasticsearch.version>
+        <lombok.version>1.18.46</lombok.version>
     </properties>
 
     <dependencies>
@@ -66,8 +66,8 @@
             <groupId>co.elastic.clients</groupId>
             <artifactId>elasticsearch-java</artifactId>
             <version>${elasticsearch.version}</version>
-            <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>org.elasticsearch.client</groupId>
             <artifactId>elasticsearch-rest-client</artifactId>
@@ -76,15 +76,13 @@
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
-            <scope>compile</scope>
+            <artifactId>jackson-databind</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.46</version>
+            <version>${lombok.version}</version>
             <scope>compile</scope>
         </dependency>
 

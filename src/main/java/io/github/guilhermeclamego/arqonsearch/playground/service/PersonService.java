@@ -22,12 +22,12 @@ public class PersonService {
         this.elasticsearchRepository = elasticsearchRepository;
     }
 
-    public void saveToMongo(Person person) {
-        mongoRepository.save(person);
+    public void saveToMongo(List<Person> person) {
+        mongoRepository.saveAll(person);
     }
 
-    public void saveToElasticsearch(Person person) throws IOException {
-        elasticsearchRepository.save(person);
+    public void saveToElasticsearch(List<Person> person) throws IOException {
+        elasticsearchRepository.saveAll(person);
     }
 
     public Person findByIdInMongo(String id) {
@@ -44,5 +44,13 @@ public class PersonService {
 
     public List<Person> findAllInElasticsearch() throws IOException {
         return elasticsearchRepository.findAll();
+    }
+
+    public void deleteAllInMongo() {
+        mongoRepository.deleteAll();
+    }
+
+    public void deleteAllInElasticsearch() throws IOException {
+        elasticsearchRepository.deleteAll();
     }
 }
