@@ -1,9 +1,17 @@
 arqon:
   search:
+    enabled: true
     mongo:
-      uri: mongodb://localhost:27017
-      database: arqon-search
+      enabled: false
     elasticsearch:
-      host: localhost
-      port: 9200
-      scheme: http
+      enabled: true
+
+
+playground:
+  mongo:
+    uri: mongodb://localhost:27017
+    database: arqon-search
+  elasticsearch:
+    host: localhost
+    port: 9200
+    scheme: http

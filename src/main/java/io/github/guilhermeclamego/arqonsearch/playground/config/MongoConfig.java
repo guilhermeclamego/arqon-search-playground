@@ -12,10 +12,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MongoConfig {
 
-    @Value("${arqon.search.mongo.uri}")
+    @Value("${playground.mongo.uri}")
     private String connectionString;
 
-    @Value("${arqon.search.mongo.database}")
+    @Value("${playground.mongo.database}")
     private String databaseName;
 
     @Bean

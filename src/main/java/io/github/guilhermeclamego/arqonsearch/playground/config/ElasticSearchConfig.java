@@ -15,13 +15,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ElasticSearchConfig {
 
-    @Value("${arqon.search.elasticsearch.host}")
+    @Value("${playground.elasticsearch.host}")
     private String host;
 
-    @Value("${arqon.search.elasticsearch.port}")
+    @Value("${playground.elasticsearch.port}")
     private int port;
 
-    @Value("${arqon.search.elasticsearch.scheme:http}")
+    @Value("${playground.elasticsearch.scheme:http}")
     private String scheme;
 
     @Bean(destroyMethod = "close")

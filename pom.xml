@@ -53,6 +53,12 @@
 
         <dependency>
             <groupId>io.github.guilhermeclamego</groupId>
+            <artifactId>arqon-search-elasticsearch</artifactId>
+            <version>${arqon-search.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.guilhermeclamego</groupId>
             <artifactId>arqon-search-spring-boot</artifactId>
             <version>${arqon-search.version}</version>
         </dependency>

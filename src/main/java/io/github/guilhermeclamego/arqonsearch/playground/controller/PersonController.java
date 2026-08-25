@@ -49,6 +49,11 @@ public class PersonController {
         return service.findByIdInElasticsearch(id);
     }
 
+    @GetMapping("/elasticsearch/search")
+    public List<Person> searchInElasticsearch(@RequestParam String value) throws IOException {
+        return service.searchInElasticsearch(value);
+    }
+
     @DeleteMapping("/mongo")
     public String deleteAllInMongo() {
         service.deleteAllInMongo();
