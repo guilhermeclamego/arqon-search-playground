@@ -2,7 +2,9 @@ package io.github.guilhermeclamego.arqonsearch.playground.repository;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import io.github.guilhermeclamego.arqonsearch.atlas.AtlasSearchRenderer;
 import io.github.guilhermeclamego.arqonsearch.playground.domain.Person;
+import io.github.guilhermeclamego.arqonsearch.query.SearchQuery;
 import org.bson.Document;
 import org.springframework.stereotype.Repository;
 
@@ -15,9 +17,11 @@ import static com.mongodb.client.model.Filters.eq;
 public class MongoPersonRepository {
 
     private final MongoCollection<Document> collection;
+    private final AtlasSearchRenderer atlasSearchRenderer;
 
-    public MongoPersonRepository(MongoDatabase database) {
+    public MongoPersonRepository(MongoDatabase database, AtlasSearchRenderer atlasSearchRenderer) {
         this.collection = database.getCollection("person");
+        this.atlasSearchRenderer = atlasSearchRenderer;
     }
 
     public void saveAll(List<Person> persons) {
@@ -66,5 +70,13 @@ public class MongoPersonRepository {
 
     public void deleteAll() {
         collection.deleteMany(new Document());
+    }
+
+    public List<Person> search(SearchQuery query) {
+        Document searchStage = atlasSearchRenderer.render(query);
+
+        return collection.aggregate(List.of(searchStage))
+                .map(this::toPerson)
+                .into(new ArrayList<>());
     }
 }

@@ -78,4 +78,25 @@ public class PersonService {
 
         return elasticsearchRepository.search(query);
     }
+
+    public List<Person> searchInAtlasSearch(String value) {
+        SearchQuery query = new SearchQuery(
+                List.of(
+                        BooleanClause.should(
+                                new TextClause(
+                                        new Field("name"),
+                                        value
+                                ),
+                                new TextClause(
+                                        new Field("email"),
+                                        value
+                                )
+                        )
+                ),
+                List.of(),
+                null
+        );
+
+        return mongoRepository.search(query);
+    }
 }

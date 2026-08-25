@@ -50,8 +50,13 @@ public class PersonController {
     }
 
     @GetMapping("/elasticsearch/search")
-    public List<Person> searchInElasticsearch(@RequestParam String value) throws IOException {
+    public List<Person> searchInElasticSearch(@RequestParam String value) throws IOException {
         return service.searchInElasticsearch(value);
+    }
+
+    @GetMapping("/mongo/search")
+    public List<Person> searchInAtlasSearch(@RequestParam String value) {
+        return service.searchInAtlasSearch(value);
     }
 
     @DeleteMapping("/mongo")
